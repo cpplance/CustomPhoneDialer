@@ -56,7 +56,12 @@ public class DialerActivity extends AppCompatActivity {
     private void makeCall() {
         if (android.support.v4.content.PermissionChecker.checkSelfPermission(this, CALL_PHONE) == PERMISSION_GRANTED) {
             Uri uri = Uri.parse("tel:"+phoneNumberInput.getText().toString().trim());
-            startActivity(new Intent(Intent.ACTION_CALL, uri));
+            
+            Intent intentcall = new Intent(Intent.ACTION_CALL);
+            intentcall.putExtra("simSlot", 0);
+            intentcall.setData(uri);
+            
+            startActivity(intentCall);
         }
     }
 
